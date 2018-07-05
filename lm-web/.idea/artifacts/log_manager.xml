@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" build-on-make="true" name="log-manager">
+    <output-path>D:/apache-tomcat-7.0.70/webapps/log-manager</output-path>
+    <root id="root">
+      <element id="artifact" artifact-name="log-manager:war exploded" />
+      <element id="directory" name="META-INF" />
+    </root>
+  </artifact>
+</component>

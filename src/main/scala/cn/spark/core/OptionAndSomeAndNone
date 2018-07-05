@@ -1,0 +1,12 @@
+object OptionAndSomeAndNone {
+
+  def main(args: Array[String]): Unit = {
+
+    val capitals = Map("France"->"Paris", "Japan"->"Tokyo", "China"->"Beijing")
+
+    Option(capitals)
+
+
+  }
+
+}

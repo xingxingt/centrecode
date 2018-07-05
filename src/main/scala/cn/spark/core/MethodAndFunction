@@ -1,0 +1,18 @@
+object MethodAndFunction {
+
+  def main(args: Array[String]): Unit = {
+
+    def m1(x: Int): Int = {
+      x + 3
+    }
+
+    var fun1=(y:Int,x:Int)=> x+y
+
+   println(fun1(1,2))
+
+
+
+
+  }
+
+}

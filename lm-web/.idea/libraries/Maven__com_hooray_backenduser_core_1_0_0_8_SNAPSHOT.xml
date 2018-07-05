@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: com.hooray:backenduser-core:1.0.0.8-SNAPSHOT">
+    <CLASSES>
+      <root url="jar://D:/.m2/repository/com/hooray/backenduser-core/1.0.0.8-SNAPSHOT/backenduser-core-1.0.0.8-20171209.101433-4.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://D:/.m2/repository/com/hooray/backenduser-core/1.0.0.8-SNAPSHOT/backenduser-core-1.0.0.8-20171209.101433-4-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://D:/.m2/repository/com/hooray/backenduser-core/1.0.0.8-SNAPSHOT/backenduser-core-1.0.0.8-20171209.101433-4-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
