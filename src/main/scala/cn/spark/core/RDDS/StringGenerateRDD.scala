@@ -21,6 +21,10 @@ class StringGenerateRDD(sc: SparkContext,
   val stringSource = new StringBuilder()
   val currentOffset = 0L;
 
+  /**
+    * 复写getPartitions方法 获取RDD划分partition的规则
+    * @return
+    */
   override def getPartitions: Array[Partition] = {
     val splitStr = str.split("\n");
     val array = new Array[Partition](numPartitions)
@@ -32,6 +36,12 @@ class StringGenerateRDD(sc: SparkContext,
     array
   }
 
+  /**
+    * 复写compute方法 获取数据 并返回Iterator格式数据
+    * @param split
+    * @param context
+    * @return
+    */
   override def compute(split: Partition, context: TaskContext): Iterator[String] = {
 
     val eles = split.asInstanceOf[linePartition].eles
