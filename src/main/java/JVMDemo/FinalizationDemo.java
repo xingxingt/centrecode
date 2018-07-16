@@ -1,3 +1,5 @@
+package JVMDemo;
+
 public class FinalizationDemo {
 
     public static FinalizationDemo active_obj=null;
