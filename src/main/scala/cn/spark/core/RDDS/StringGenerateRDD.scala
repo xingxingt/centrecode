@@ -22,7 +22,7 @@ class StringGenerateRDD(sc: SparkContext,
   val currentOffset = 0L;
 
   /**
-    * 复写getPartitions方法 获取RDD划分partition的规则
+    * 复写getPartitions方法 获取RDD划分partition
     * @return
     */
   override def getPartitions: Array[Partition] = {

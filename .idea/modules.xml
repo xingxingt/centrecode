@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/sparkmaven.iml" filepath="$PROJECT_DIR$/sparkmaven.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spark-maven.iml" filepath="$PROJECT_DIR$/spark-maven.iml" />
     </modules>
   </component>
 </project>

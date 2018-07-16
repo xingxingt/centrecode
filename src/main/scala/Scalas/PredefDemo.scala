@@ -11,6 +11,9 @@ object PredefDemo {
     assert(2==1,"excption compire unEquire")
     print("-----------------")
 
+
   }
+
+
 
 }

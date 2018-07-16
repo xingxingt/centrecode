@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 
+
 public class ConsumerLoop implements Runnable {
     private final KafkaConsumer<String, String> consumer;
     private final List<String> topics;
