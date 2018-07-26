@@ -2,12 +2,12 @@ package Scalas
 
 /**
   * 测试apply方法的使用
+  * apply方法常用于创建类实例的工厂方法。
   * 当对象（伴生对象）以函数的方式进行调用时，scala 会隐式地将调用改为在该对象上调用apply方法。
   * 例如： Demo(“hello”) 实际调用的是 Demo.apply(“hello”), 因此apply方法又被称为注入方法。
   *
   * 直接调用ApplyDemo伴生对象里面的apply方法,实例化一个ApplyDemo对象，无需使用new去创建一个对象
   * 然后将实例对象复制给变量test   test就可以直接调用ApplyDemo的haveatry方法
-  *
   */
 class ApplyDemo {
 
