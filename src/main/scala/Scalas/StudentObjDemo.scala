@@ -1,5 +1,6 @@
 package Scalas
 
+
 class StudentObjDemo {
 
   private var age=0
