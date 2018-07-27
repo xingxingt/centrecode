@@ -1,6 +1,7 @@
 package Scalas
 
 /**
+  *【Class中的Apply方法:】
   * 测试apply方法的使用
   * apply方法常用于创建类实例的工厂方法。
   * 当对象（伴生对象）以函数的方式进行调用时，scala 会隐式地将调用改为在该对象上调用apply方法。
@@ -8,6 +9,17 @@ package Scalas
   *
   * 直接调用ApplyDemo伴生对象里面的apply方法,实例化一个ApplyDemo对象，无需使用new去创建一个对象
   * 然后将实例对象复制给变量test   test就可以直接调用ApplyDemo的haveatry方法
+  *
+  *【Array数组的apply方法：】
+  *同理，可以直接使用val arr=Array(1,2,3)  无需用new，使用Array对象就可以定义一个数组，应为调用Array(1,2,3)就会触发
+  * Array的apply()方法的调用  方法如下:
+  * def apply[T: ClassTag](xs: T*): Array[T] = {
+  * val array = new Array[T](xs.length)
+  * var i = 0
+  * for (x <- xs.iterator) { array(i) = x; i += 1 }
+  * array
+  * }
+  *
   */
 class ApplyDemo {
 
