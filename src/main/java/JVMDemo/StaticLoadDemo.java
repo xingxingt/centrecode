@@ -1,7 +1,7 @@
 package JVMDemo;
 
 /**
- * 【演示类的加载机制】
+ * 【演示类的加载机制 被动引用】
  * 通过子类引用父类的静态字段，不会导致子类初始化
  */
 class SuperClass {
@@ -21,6 +21,8 @@ class subClass extends SuperClass {
     static {
         System.out.println("subClass init");
     }
+    public static String sub_value = "super value";
+
 
 
 }
@@ -35,9 +37,12 @@ public class StaticLoadDemo {
          * 对于静态变量只有直接定义这个字段的类才会被初始化，因此通过其子类引用父类的静态字段，
          * 只会触发父类的初始化而不会触发子类的初始化
          */
-//        System.out.println(subClass.value); //结果输出 superClass init  123
+        System.out.println(subClass.value); //结果输出 superClass init  123
 
-        SuperClass[] sc = new SuperClass[10];
+        /**
+         *并没有触发类的初始化
+         */
+//       SuperClass[] sc = new SuperClass[10];
 
 
     }
