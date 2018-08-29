@@ -4,6 +4,10 @@ import java.text.SimpleDateFormat
 import org.apache.spark.SparkConf
 import org.apache.spark.sql.SparkSession
 import org.apache.spark.streaming.{Seconds, StreamingContext}
+
+/**
+  * 【窗口函数】
+  */
 object WindowFuns {
   private val sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
