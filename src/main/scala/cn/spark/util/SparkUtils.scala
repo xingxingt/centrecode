@@ -39,8 +39,8 @@ object SparkUtils {
 
   def getSparkContext(appName: String) = {
     var sconf = new SparkConf()
-    System.setProperty("hadoop.home.dir", "D:\\documents\\GitHub\\winutils\\hadoop-2.6.0")
-    sconf.setMaster("local")
+//    System.setProperty("hadoop.home.dir", "D:\\documents\\GitHub\\winutils\\hadoop-2.6.0")
+    sconf.setMaster("local[2]")
     sconf.setAppName(appName)
     new SparkContext(sconf)
   }
