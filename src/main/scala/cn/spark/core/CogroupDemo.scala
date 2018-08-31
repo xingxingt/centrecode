@@ -10,7 +10,7 @@ import org.apache.spark.{SparkConf, SparkContext}
 object CogroupDemo {
 
   def main(args: Array[String]): Unit = {
-    val sc = SparkUtils.getSparkContext("CogroupDemo")
+    val sc = SparkUtils.getLocalSparkContext("CogroupDemo")
     val data1 = sc.parallelize(List((1, "www"), (2, "bbs")))
     val data2 = sc.parallelize(List((1, "iteblog"), (2, "iteblog"), (3, "very")))
     val data3 = sc.parallelize(List((1, "com"), (2, "com"), (3, "good")))
