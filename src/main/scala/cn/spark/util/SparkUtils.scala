@@ -2,6 +2,7 @@ package cn.spark.util
 
 import org.apache.spark.{SparkConf, SparkContext}
 import org.apache.spark.sql.SparkSession
+import org.apache.spark.streaming.{Seconds, StreamingContext}
 
 /**
   * Created by admin on 2017/11/10.
@@ -37,11 +38,19 @@ object SparkUtils {
   //    }
   //  }
 
-  def getSparkContext(appName: String) = {
-    var sconf = new SparkConf()
-//    System.setProperty("hadoop.home.dir", "D:\\documents\\GitHub\\winutils\\hadoop-2.6.0")
+  def getLocalSparkContext(appName: String) = {
+    val sconf = new SparkConf()
+    //    System.setProperty("hadoop.home.dir", "D:\\documents\\GitHub\\winutils\\hadoop-2.6.0")
     sconf.setMaster("local[2]")
     sconf.setAppName(appName)
     new SparkContext(sconf)
+  }
+
+
+  def getLocalStreamingContext(appName: String, timeInterval: Int) = {
+    val sconf = new SparkConf()
+    sconf.setMaster("local[2]")
+    sconf.setAppName(appName)
+    new StreamingContext(sconf, Seconds(timeInterval))
   }
 }
