@@ -11,7 +11,7 @@ object GroupTopN {
 
   def main(args: Array[String]): Unit = {
 
-    val sc = SparkUtils.getSparkContext("GroupTopN")
+    val sc = SparkUtils.getLocalSparkContext("GroupTopN")
     val data = sc.textFile("F:\\dataTest\\groupTopN.txt")
     val lines = data.map { line => (line.split(" ")(0), line.split(" ")(1).toInt) }
     val groups = lines.groupByKey()
