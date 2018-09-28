@@ -2,9 +2,9 @@
   <library name="Maven: org.scala-lang:scala-library:2.11.8" type="Scala">
     <properties>
       <compiler-classpath>
-        <root url="file://$MAVEN_REPOSITORY$/org/scala-lang/scala-compiler/2.11.8/scala-compiler-2.11.8.jar" />
-        <root url="file://$MAVEN_REPOSITORY$/org/scala-lang/scala-library/2.11.8/scala-library-2.11.8.jar" />
-        <root url="file://$MAVEN_REPOSITORY$/org/scala-lang/scala-reflect/2.11.8/scala-reflect-2.11.8.jar" />
+        <root url="file://D:/apache-maven-3.5.4/maven_repository/org/scala-lang/scala-compiler/2.11.8/scala-compiler-2.11.8.jar" />
+        <root url="file://D:/apache-maven-3.5.4/maven_repository/org/scala-lang/scala-library/2.11.8/scala-library-2.11.8.jar" />
+        <root url="file://D:/apache-maven-3.5.4/maven_repository/org/scala-lang/scala-reflect/2.11.8/scala-reflect-2.11.8.jar" />
       </compiler-classpath>
     </properties>
     <CLASSES>
