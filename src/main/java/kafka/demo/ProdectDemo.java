@@ -1,10 +1,9 @@
 package kafka.demo;
 
-import org.apache.kafka.clients.producer.KafkaProducer;
-import org.apache.kafka.clients.producer.Producer;
-import org.apache.kafka.clients.producer.ProducerRecord;
+import org.apache.kafka.clients.producer.*;
 
 import java.util.Properties;
+import java.util.concurrent.Future;
 
 /**
  *【Kafka producer Demo】
@@ -31,14 +30,27 @@ public class ProdectDemo {
 
         Producer<String, String> producer = new KafkaProducer<String, String>(props);
         ProducerRecord<String, String> recoder=new ProducerRecord<String, String>("test","test1","test value");
+        //同步发送消息
         try {
-            producer.send(recoder);
+            RecordMetadata recordMetadata=producer.send(recoder).get();
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-
+        //异步发送消息
+        try {
+            producer.send(recoder,new DemoProducerCallback());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
+}
 
+ class DemoProducerCallback implements Callback {
+    public void onCompletion(RecordMetadata recordMetadata, Exception e) {
+        if (e != null) {//如果Kafka返回一个错误，onCompletion方法抛出一个non null异常。
+            e.printStackTrace();//对异常进行一些处理，这里只是简单打印出来
+        }
+    }
 }
