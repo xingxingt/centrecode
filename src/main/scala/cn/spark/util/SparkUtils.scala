@@ -53,4 +53,8 @@ object SparkUtils {
     sconf.setAppName(appName)
     new StreamingContext(sconf, Seconds(timeInterval))
   }
+
+  def getLocalSparkSession(appName: String) = {
+    SparkSession.builder().appName(appName).master("local[2]").getOrCreate()
+  }
 }
