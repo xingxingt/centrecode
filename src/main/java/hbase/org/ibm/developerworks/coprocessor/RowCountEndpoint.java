@@ -42,7 +42,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * RowCount endpoint协处理器
+ * RowCount endpoint协处理器  服务端代码
+ * hbase版本: 0.98.11-hadoop2
  */
 public class RowCountEndpoint extends getRowCount.ibmDeveloperWorksService
         implements Coprocessor, CoprocessorService {
@@ -73,11 +74,16 @@ public class RowCountEndpoint extends getRowCount.ibmDeveloperWorksService
      * @throws IOException if the provided environment is not an instance of
      *                     {@code RegionCoprocessorEnvironment}
      */
+    //todo 调用器 start 接口，完成初始化工作。一般的该接口函数中仅仅需要将协处理器的运行上下文环境变量
+    //todo CoprocessorEnviorment保存到本地即可。
+    //todo CoprocessorEnviorment 保存了协处理器的运行环境，每个协处理器都是在一个 RegionServer 进程内运行，
+    //todo 并隶属于某个 Region。通过该变量，可以获取 Region 的实例等 HBase 的运行时环境对象。
     public void start(CoprocessorEnvironment envi) throws IOException {
         if (envi instanceof RegionCoprocessorEnvironment) {
             this.env = (RegionCoprocessorEnvironment) envi;
             RegionCoprocessorEnvironment re = (RegionCoprocessorEnvironment) envi;
             RegionServerServices rss = re.getRegionServerServices();
+             //todo 获取 ZooKeeper 对象，这个 ZooKeeper 就是本 HBase 实例所连接的 ZooKeeper
             zkw = rss.getZooKeeper();
             zNodePath = zNodePath + re.getRegion().getRegionNameAsString();
             try {
@@ -101,6 +107,7 @@ public class RowCountEndpoint extends getRowCount.ibmDeveloperWorksService
     }
 
     @Override
+    //todo endpoint 协处理器真正的业务代码
     public void getRowCount(RpcController controller, getRowCount.getRowCountRequest request,
                             RpcCallback<getRowCount.getRowCountResponse> done) {
         boolean reCount = request.getReCount();

@@ -25,7 +25,8 @@ import java.util.List;
 
 
 /**
- * RowCount Observer协处理器
+ * RowCount Observer协处理器 服务端代码
+ * hbase版本: 0.98.11-hadoop2
  */
 public class RowCountObserver extends BaseRegionObserver {
     RegionCoprocessorEnvironment env;

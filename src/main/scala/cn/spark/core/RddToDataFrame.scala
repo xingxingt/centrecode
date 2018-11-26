@@ -69,7 +69,7 @@ object RddToDataFrame {
   def main(args: Array[String]): Unit = {
     val spark = SparkUtils.getLocalSparkSession("rddToDataFrame")
     runInferSchemaExample(spark)
-    runProgrammaticSchemaExample(spark)
+//    runProgrammaticSchemaExample(spark)
   }
 
 }

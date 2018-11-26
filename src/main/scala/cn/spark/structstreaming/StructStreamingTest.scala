@@ -33,6 +33,7 @@ object StructStreamingTest {
       .format("console")
       .start()
 
+    //awaitTermination()以防止在查询处于活动状态时退出该进程。
     query.awaitTermination()
 
 

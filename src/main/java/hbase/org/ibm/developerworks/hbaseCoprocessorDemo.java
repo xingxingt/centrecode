@@ -77,8 +77,7 @@ public class hbaseCoprocessorDemo {
 
             byte[] s = Bytes.toBytes("r1");
             byte[] e = Bytes.toBytes("t1");
-            results =
-                    table.batchCoprocessorService(ibmDeveloperWorksService.getDescriptor().findMethodByName("getRowCount"), builder.build(), s, e, getRowCountResponse.getDefaultInstance()); //, callback);
+            results = table.batchCoprocessorService(ibmDeveloperWorksService.getDescriptor().findMethodByName("getRowCount"), builder.build(), s, e, getRowCountResponse.getDefaultInstance()); //, callback);
         } catch (Exception e) {
             e.printStackTrace();
         } catch (Throwable t) {
@@ -92,8 +91,10 @@ public class hbaseCoprocessorDemo {
         return totalRowCount;
     }
 
+    //todo Table.coprocessorService(Class, byte[], byte[], Batch.Call, Batch.Callback)
     long getTableRowCountFast(String tableName) {
         System.out.println("getTableRowCountFast invoked for " + tableName);
+        //todo 定义总的 rowCount 变量
         final AtomicLong totalRowCount = new AtomicLong();
         try {
             Configuration config = new Configuration();
@@ -118,6 +119,7 @@ public class hbaseCoprocessorDemo {
                     new Batch.Callback<getRowCountResponse>() {
 
                         public void update(byte[] region, byte[] row, getRowCountResponse result) {
+                            //todo 直接将 Batch.Call 的结果，即单个 region 的 rowCount 累加到 totalRowCount
                             totalRowCount.getAndAdd(result.getRowCount());
                         }
                     };
@@ -131,28 +133,37 @@ public class hbaseCoprocessorDemo {
         return totalRowCount.get();
     }
 
+
+    //todo Table.coprocessorService(Class, byte[], byte[],Batch.Call),
     long getTableRowCountSlow(String tableName) {
         System.out.println("getTableRowCountSlow invoked for " + tableName);
         Map<byte[], getRowCountResponse> results = null;
         try {
             Configuration config = new Configuration();
             HConnection connection = HConnectionManager.createConnection(config);
+            //todo 获取table实例
             HTableInterface table = connection.getTable(tableName);
 
             Batch.Call<ibmDeveloperWorksService, getRowCountResponse> callable =
                     new Batch.Call<ibmDeveloperWorksService, getRowCountResponse>() {
+
                         ServerRpcController controller = new ServerRpcController();
+                        //todo 初始化 RPC 的入口参数，设置 reCount 为 true
+                        //todo Server 端会进行慢速的遍历 region 的方法进行统计
                         BlockingRpcCallback<getRowCountResponse> rpcCallback =
                                 new BlockingRpcCallback<getRowCountResponse>();
 
+                        //todo 重载call方法
                         public getRowCountResponse call(ibmDeveloperWorksService instance) throws IOException {
                             hbase.org.ibm.developerworks.getRowCount.getRowCountRequest.Builder builder = getRowCountRequest.newBuilder();
                             builder.setReCount(true);
+                            //todo  RPC调用
                             instance.getRowCount(controller, builder.build(), rpcCallback);
+                            //todo 直接返回结果，即该 Region 的 rowCount
                             return rpcCallback.get();
                         }
                     };
-
+            //todo 调用table.coprocessorService startRow和EndRow都为null，也就是意味着调用table上的所有region上的协处理器
             results = table.coprocessorService(ibmDeveloperWorksService.class, null, null,
                     callable);
         } catch (Exception e) {
@@ -179,17 +190,24 @@ public class hbaseCoprocessorDemo {
             return getTableRowCountFast(tableName);
     }
 
+    //todo  获取单个 Region 的 rowcount
+    //todo Table.coprocessorService(byte[])
     long singleRegionCount(String tableName, String rowkey, boolean reCount) {
         long rowcount = 0;
         try {
             Configuration config = new Configuration();
             HConnection conn = HConnectionManager.createConnection(config);
             HTableInterface tbl = conn.getTable(tableName);
+            //todo 获取 Channel 该RPC 通道连接到由 rowkey 指定的 Region上通过这个通道就可以调用该Region上部署的协处理器 RPC。
             CoprocessorRpcChannel channel = tbl.coprocessorService(rowkey.getBytes());
-            hbase.org.ibm.developerworks.getRowCount.ibmDeveloperWorksService.BlockingInterface service = hbase.org.ibm.developerworks.getRowCount.ibmDeveloperWorksService.newBlockingStub(channel);
-            hbase.org.ibm.developerworks.getRowCount.getRowCountRequest.Builder request = hbase.org.ibm.developerworks.getRowCount.getRowCountRequest.newBuilder();
+            getRowCount.ibmDeveloperWorksService.BlockingInterface service = getRowCount.ibmDeveloperWorksService.newBlockingStub(channel);
+            //todo 设置 RPC 入口参数
+            getRowCount.getRowCountRequest.Builder request = getRowCount.getRowCountRequest.newBuilder();
             request.setReCount(reCount);
-            hbase.org.ibm.developerworks.getRowCount.getRowCountResponse ret = service.getRowCount(null, request.build());
+
+            //todo 调用 RPC
+            getRowCount.getRowCountResponse ret = service.getRowCount(null, request.build());
+            //todo 解析结果
             rowcount = ret.getRowCount();
         } catch (Exception e) {
             e.printStackTrace();

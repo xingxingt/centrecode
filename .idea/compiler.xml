@@ -6,11 +6,11 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="spark-maven" />
+        <module name="centrecode" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="spark-maven" target="8" />
+      <module name="centrecode" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>
