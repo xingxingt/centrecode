@@ -26,6 +26,7 @@
         <elasticsearch-spark-version>5.3.2</elasticsearch-spark-version>
         <protobuf-java-version>2.5.0</protobuf-java-version>
         <spark-streaming-kafka-version>2.0.1</spark-streaming-kafka-version>
+        <mybatis-version>3.3.0</mybatis-version>
     </properties>
 
 
@@ -34,6 +35,21 @@
             <groupId>org.scala-lang</groupId>
             <artifactId>scala-library</artifactId>
             <version>${scala-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.scala-lang</groupId>
+            <artifactId>scala-reflect</artifactId>
+            <version>${scala-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.scala-lang</groupId>
+            <artifactId>scala-compiler</artifactId>
+            <version>${scala-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.mybatis</groupId>
+            <artifactId>mybatis</artifactId>
+            <version>${mybatis-version}</version>
         </dependency>
         <dependency>
             <groupId>org.apache.spark</groupId>
@@ -140,6 +156,17 @@
             <artifactId>hbase-server</artifactId>
             <version>${hbase-client-version}</version>
         </dependency>
+        <!--<dependency>-->
+        <!--<groupId>org.elasticsearch.plugin</groupId>-->
+        <!--<artifactId>transport-netty4-client</artifactId>-->
+        <!--<version>6.1.1</version>-->
+        <!--</dependency>-->
+        <dependency>
+            <groupId>org.elasticsearch.client</groupId>
+            <artifactId>transport</artifactId>
+            <version>6.4.3</version>
+        </dependency>
+
 
     </dependencies>
 
