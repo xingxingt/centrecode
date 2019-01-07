@@ -1,0 +1,10 @@
+if [ $# != 2 ] ; then
+echo "USAGE: $0 [from_jar] [from_package]" 
+exit 1;
+fi
+jar=$1
+pkg=${2//./\/}/
+dir=/data/target/
+cd $dir/tool
+unzip -o -q $dir/$jar
+zip -r $dir/target.jar "$pkg"
