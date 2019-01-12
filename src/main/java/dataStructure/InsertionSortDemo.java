@@ -1,14 +1,18 @@
 package dataStructure;
 
+import java.util.Random;
+
 /**
  * 【插入排序】
  * 插入排序的两个操作：1，元素的比较 2，元素的移动
  * 会将一个待排序数组分为已排序区间和未排序区间
+ * 冒泡排序10000个元素 用时:18ms  插入排序 用时:123ms
  */
 public class InsertionSortDemo {
 
 
     public static void insertionSort(int[] arr) {
+        long startTime = System.currentTimeMillis();
 
         if (arr.length <= 1) {
             return;
@@ -34,15 +38,20 @@ public class InsertionSortDemo {
             arr[j + 1] = value;
 
         }
-
-
+        long endTime = System.currentTimeMillis();
+        System.out.println(":算法所用时间: " + (endTime - startTime) + "ms");
     }
 
 
     public static void main(String[] args) {
+        int[] array = new int[10000];
 
-        int[] arr = {4, 5, 6, 1, 3, 2};
-        insertionSort(arr);
+        for (int i = 0; i < 10000; i++) {
+            int random = new Random().nextInt(10000);
+            array[i] = random;
+        }
+
+        insertionSort(array);
     }
 
 
