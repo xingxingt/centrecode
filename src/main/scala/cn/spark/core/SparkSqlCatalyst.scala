@@ -54,6 +54,57 @@ object SparkSqlCatalyst {
     println(PushPredicateThroughJoin(queryExecution.analyzed))
 
 
+    //queryExecution
+    /**
+      *
+      * == Parsed Logical Plan ==
+          'Aggregate ['name], [unresolvedalias('sum('v), None), 'name]
+          +- 'SubqueryAlias tmp
+           +- 'Project ['student.id, ((100 + 10) + 'score.score) AS v#30, 'name]
+              +- 'Filter (('student.id = 'score.id) && ('student.age >= 11))
+                 +- 'Join Inner
+                    :- 'UnresolvedRelation `student`
+                    +- 'UnresolvedRelation `score`
+
+          == Analyzed Logical Plan ==
+          sum(v): bigint, name: string
+          Aggregate [name#8], [sum(cast(v#30 as bigint)) AS sum(v)#32L, name#8]
+          +- SubqueryAlias tmp
+           +- Project [id#7, ((100 + 10) + score#24) AS v#30, name#8]
+              +- Filter ((id#7 = id#22) && (age#9 >= 11))
+                 +- Join Inner
+                    :- SubqueryAlias student, `student`
+                    :  +- Project [_1#3 AS id#7, _2#4 AS name#8, _3#5 AS age#9]
+                    :     +- LocalRelation [_1#3, _2#4, _3#5]
+                    +- SubqueryAlias score, `score`
+                       +- Project [_1#18 AS id#22, _2#19 AS subject#23, _3#20 AS score#24]
+                          +- LocalRelation [_1#18, _2#19, _3#20]
+
+          == Optimized Logical Plan ==
+          Aggregate [name#8], [sum(cast(v#30 as bigint)) AS sum(v)#32L, name#8]
+          +- Project [(110 + score#24) AS v#30, name#8]
+           +- Join Inner, (id#7 = id#22)
+              :- Project [_1#3 AS id#7, _2#4 AS name#8]
+              :  +- Filter (_3#5 >= 11)
+              :     +- LocalRelation [_1#3, _2#4, _3#5]
+              +- LocalRelation [id#22, score#24]
+
+          == Physical Plan ==
+              *HashAggregate(keys=[name#8], functions=[sum(cast(v#30 as bigint))], output=[sum(v)#32L, name#8])
+          +- Exchange hashpartitioning(name#8, 200)
+           +- *HashAggregate(keys=[name#8], functions=[partial_sum(cast(v#30 as bigint))], output=[name#8, sum#37L])
+              +- *Project [(110 + score#24) AS v#30, name#8]
+                 +- *BroadcastHashJoin [id#7], [id#22], Inner, BuildRight
+                    :- *Project [_1#3 AS id#7, _2#4 AS name#8]
+                    :  +- *Filter (_3#5 >= 11)
+                    :     +- LocalTableScan [_1#3, _2#4, _3#5]
+                    +- BroadcastExchange HashedRelationBroadcastMode(List(cast(input[0, int, false] as bigint)))
+                       +- LocalTableScan [id#22, score#24]
+      *
+      *
+      */
+
+
   }
 
 }
