@@ -4,9 +4,10 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 /***
  * 【归并排序】
+ *  是稳定的排序算法  时间复杂度:O(nlogn)  空间复杂度O(n)
  */
 public class Merger_sort {
-    AtomicInteger accu = new AtomicInteger(1);
+    private AtomicInteger accu = new AtomicInteger(1);
 
     public void merge_sort(int[] array) {
         int array_length = array.length;
@@ -26,7 +27,7 @@ public class Merger_sort {
         if (p >= r) return;
 
         //获取p，r的中间位置q
-        int q = (p + r) / 2;
+        int q = (p + r) / 2; //通过 / 取整
 //        int q = p + (r -p) / 2;
 
         //分而治之
