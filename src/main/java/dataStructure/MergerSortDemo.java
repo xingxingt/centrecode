@@ -4,9 +4,9 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 /***
  * 【归并排序】
- *  是稳定的排序算法  时间复杂度:O(nlogn)  空间复杂度O(n)
+ *  是稳定的排序算法  时间复杂度:O(nlogn)  空间复杂度O(n):非原地排序算法，因为在merge的时候需要申请临时的内存空间
  */
-public class Merger_sort {
+public class MergerSortDemo {
     private AtomicInteger accu = new AtomicInteger(1);
 
     public void merge_sort(int[] array) {
@@ -97,7 +97,7 @@ public class Merger_sort {
 
     public static void main(String[] args) {
         int[] array = new int[]{3, 1, 5, 6, 4, 8, 7, 8, 11};
-        new Merger_sort().merge_sort(array);
+        new MergerSortDemo().merge_sort(array);
 
         //执行结果:
         /**
