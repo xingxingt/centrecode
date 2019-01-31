@@ -14,6 +14,8 @@ import org.apache.spark.{SparkConf, SparkContext}
   * 如果不断的更新某个key的state，那么一定会涉及到对state的存储，则需要开启checkpoint机制，
   * Notice:checkpoint只能存储能够存储在文件系统中的数据
   *
+  * ref:http://sharkdtu.com/posts/spark-streaming-state.html
+  *
   */
 object UpdateStateByKeyDemo {
 
