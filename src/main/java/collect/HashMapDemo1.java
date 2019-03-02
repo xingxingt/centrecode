@@ -3,10 +3,15 @@ package collect;
 import java.util.HashMap;
 import java.util.UUID;
 
+/**
+ * 【HashMap】
+ * HashMap底层是使用数据结构实现的
+ * 用链表+红黑树解决hash碰撞
+ */
 public class HashMapDemo1 {
 
 
-    public static void main(String[] args) throws Exception{
+    public static void main(String[] args) throws Exception {
 
         final HashMap<String, String> map = new HashMap<String, String>(2);
         Thread t = new Thread(new Runnable() {
