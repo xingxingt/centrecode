@@ -1,4 +1,4 @@
-package collect;
+package collectionandmap;
 
 import java.util.HashMap;
 import java.util.UUID;
