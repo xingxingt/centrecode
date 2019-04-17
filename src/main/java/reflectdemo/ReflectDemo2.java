@@ -65,7 +65,7 @@ public class ReflectDemo2 {
         Class c = obj.getClass();
         //获取所有的自己所有的public的成员变量以及继承父类的成员变量
         Field[] fs1 = c.getFields();
-        //获取所有的自己所有的public的成员变量
+        //获取所有的自己所有的成员变量
         Field[] fs2 = c.getDeclaredFields();
     }
 
