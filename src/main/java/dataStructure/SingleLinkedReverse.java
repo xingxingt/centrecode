@@ -2,6 +2,7 @@ package dataStructure;
 
 /**
  * 单链表反转
+ * 可以通过日志分析反转过程
  */
 public class SingleLinkedReverse {
 
@@ -38,8 +39,8 @@ public class SingleLinkedReverse {
         head = reverse(head);
 
         System.out.println(" ");
-        while(head != null){
-            System.out.print(head.data+"  ");
+        while (head != null) {
+            System.out.print(head.data + "  ");
             head = head.next;
         }
 
@@ -51,13 +52,19 @@ public class SingleLinkedReverse {
         p1 = head;
 
         while (head.next != null) {
-            p2 = head.next;
-            head.next = p2.next;
-            p2.next = p1;
-            p1 = p2;
+            System.out.println("--------------------------");
+            System.out.println("head:" + head.data + ":" + head.next.data);
+            System.out.println("p1:" + p1.data + ":" + p1.next.data);
+            if (p2 != null) System.out.println("p2:" + p2.data + ":" + p2.next.data);
 
-//            System.out.println("p1:" + head.data + ":" + head.next.data);
-//            System.out.println("p2:" + p2.data + ":" + p2.next.data);
+            p2 = head.next;
+            head.next = p2.next;//重置head的next指针
+            p2.next = p1; //next指针反转
+            p1 = p2; //把当前p2的值赋值给p1(记下当前p2到哪个位置了)
+
+            System.out.println("head:" + head.data + ":" + head.next.data);
+            System.out.println("p1:" + p1.data + ":" + p1.next.data);
+            System.out.println("p2:" + p2.data + ":" + p2.next.data);
         }
         return p2;
 

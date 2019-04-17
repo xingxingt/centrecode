@@ -50,6 +50,8 @@ public class StackByLinkDemo {
             return null;
         }
 
+        System.out.println("------" + top.next.data);
+
         String data = top.data;
         top = top.next;
 //        top.next = top.next.next;
@@ -61,7 +63,9 @@ public class StackByLinkDemo {
         stack.put("1");
         stack.put("2");
         stack.put("3");
+        stack.put("4");
 
+        System.out.println(stack.pop());
         System.out.println(stack.pop());
         System.out.println(stack.pop());
         System.out.println(stack.pop());

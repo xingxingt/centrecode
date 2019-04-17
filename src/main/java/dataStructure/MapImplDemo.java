@@ -24,6 +24,7 @@ class Node<K, V> {
 public class MapImplDemo<K, V> {
     private Node<K, V>[] nodes;  //map存储
     private int size;  //map大小
+    private int init_capacity_size=16;
 
     /**
      * 初始化map大小
@@ -43,7 +44,7 @@ public class MapImplDemo<K, V> {
     public void put(K key, V value) {
         //判断map容量
         if (nodes.length == 0) {
-            nodes = new Node[16];
+            nodes = new Node[init_capacity_size];
         }
         //判断是否需要扩容
         if (size == nodes.length) {

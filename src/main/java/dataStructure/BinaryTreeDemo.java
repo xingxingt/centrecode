@@ -49,7 +49,7 @@ public class BinaryTreeDemo<T> {
         System.out.println(root.data);
         int leftTree = computHeight(root.leftTree);//这里主要是看root的左右节点是否为空
         int rightTree = computHeight(root.rightTree);
-        System.out.println("................" + (leftTree > rightTree ? (leftTree + 1) : (rightTree + 1)));
+//        System.out.println("................" + (leftTree > rightTree ? (leftTree + 1) : (rightTree + 1)));
         return leftTree > rightTree ? (leftTree + 1) : (rightTree + 1);
     }
 

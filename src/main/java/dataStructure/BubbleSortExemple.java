@@ -6,7 +6,7 @@ import java.util.Random;
  * 【 冒泡排序 】
  * 冒泡排序只会操作相邻的两个数据，每次冒泡操作都会对相邻的两个元素进行比较，
  * 看是否满足大小关系要求，如果不满足就让它互换；
- * 是稳定的排序算法  时间复杂度:O(n平方)
+ * 是稳定的排序算法  时间复杂度:O(n平方) 是原地排序算法
  */
 public class BubbleSortExemple {
     public static void bubbleSort(int[] a) {
