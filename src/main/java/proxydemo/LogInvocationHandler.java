@@ -22,6 +22,10 @@ class HelloImp implements Hello {
     }
 }
 
+
+/**
+ * JDK动态代理的实现
+ */
 //代理类
 @Slf4j
 public class LogInvocationHandler implements InvocationHandler {
