@@ -1,4 +1,4 @@
-package zhujie;
+package annotation.demo;
 
 public class Test {
 

@@ -30,7 +30,7 @@ public class MergerSortDemo {
         int q = (p + r) / 2; //通过 / 取整
 //        int q = p + (r -p) / 2;
 
-        //分而治之
+        //分而治21`
         merger_c(array, p, q, "1");
         merger_c(array, q + 1, r, "2");
 

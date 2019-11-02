@@ -10,6 +10,7 @@ import java.util.LinkedHashMap;
  * HashMap中条目是没有顺序的，但是在LinkedHashMap中元素既可以按照它们插入图的顺序排序，
  * 也可以按它们最后一次被访问的顺序排序。
  * ref:https://www.jianshu.com/p/63e76826e852
+ * http://alexyyek.github.io/2015/04/06/Collection/
  */
 public class LinkedHashMapDemo {
 
