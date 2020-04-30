@@ -23,12 +23,15 @@ public class LinkSortDemo1 {
         if (head == null) {
             return head;
         }
+        System.out.println("--------------------------");
         //快慢指针
         ListNode slow, fast;
         slow = fast = head;
         while (fast.next != null && fast.next.next != null) {
+            System.out.println(fast.val+"----"+slow.val);
             slow = slow.next;
             fast = fast.next.next;
+
         }
         return slow;
     }
@@ -37,16 +40,16 @@ public class LinkSortDemo1 {
     public ListNode merge(ListNode a, ListNode b) {
         ListNode dummyHead, curr;
         dummyHead = new ListNode(0);
-        curr = dummyHead;
-        while (a != null && b != null) {
-            if (a.val <= b.val) {
+        curr = dummyHead;  //curr和dummyHead指向同一个对象地址， curr是当前比较的listNode元素 dummyHead:排好序的head节点
+        while (a != null && b != null) { // 当a或者b链表元素比较完后就为空链表
+            if (a.val <= b.val) { //a链表的每个元素和b链表的head比较大小
                 curr.next = a;
-                a = a.next;
+                a = a.next; //改变a的值,下个循环将a的next节点和b节点比较
             } else {
                 curr.next = b;
                 b = b.next;
             }
-            curr = curr.next;
+            curr = curr.next; //将curr指向下一次循环需要比较的节点
         }
         curr.next = (a == null) ? b : a;
         return dummyHead.next;
@@ -60,6 +63,7 @@ public class LinkSortDemo1 {
         }
         //得到链表中间的数
         ListNode middle = getMiddle(head);
+        System.out.println("mid:"+middle.val);
         ListNode sHalf = middle.next;
         //拆分链表
         middle.next = null;
