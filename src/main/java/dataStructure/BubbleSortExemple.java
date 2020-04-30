@@ -32,6 +32,7 @@ public class BubbleSortExemple {
         }
         long endTime = System.currentTimeMillis();
         System.out.println(":算法所用时间: " + (endTime - startTime) + "ms");
+        show(a);
     }
 
     public static void show(int[] arr) {
@@ -41,10 +42,10 @@ public class BubbleSortExemple {
     }
 
     public static void main(String[] args) {
-        int[] array = new int[10000];
+        int[] array = new int[10];
 
-        for (int i = 0; i < 10000; i++) {
-            int random = new Random().nextInt(10000);
+        for (int i = 0; i < 10; i++) {
+            int random = new Random().nextInt(10);
             array[i] = random;
         }
         bubbleSort(array);
