@@ -126,6 +126,7 @@ public class OrderPrint {
         executor.submit(thread3);
         executor.submit(thread1);
         executor.submit(thread2);
+        executor.shutdown();
 
     }
 

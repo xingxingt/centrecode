@@ -79,9 +79,10 @@ public class AlternatePrint {
         };
 
         //使用线程池模拟多个线程同时执行
-        ExecutorService executor = Executors.newFixedThreadPool(4);
+        ExecutorService executor = Executors.newFixedThreadPool(2);
         executor.submit(t1);
         executor.submit(t2);
+        executor.shutdown();
 
     }
 }
